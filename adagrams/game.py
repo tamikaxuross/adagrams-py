@@ -98,28 +98,28 @@ def score_word(word):
 
 #WAVE4
 def get_highest_word_score(word_list):
-    # Step 1: Set starting score and best word placeholders
+    # Set starting score and best word placeholders
     highest_score = 0
     best_word = ""
 
-    # Step 2: Loop through each word in the word_list
+    #Loop through each word in the word_list
     for word in word_list:
-        score = score_word(word)  # Get the score of the current word
+        score = score_word(word)  #Get the score of the current word
 
-        # Step 3: If the word has a higher score, update the best word and score
+        #If the word has a higher score, update the best word and score
         if score > highest_score:
             highest_score = score
             best_word = word
 
-        # Step 4: If the score is the same as the highest, use tie-breaking rules
+        # If the score is the same as the highest, use tie-breaking rules
         elif score == highest_score:
             # Rule 1: Prefer the word with fewer letters (shortest word)
-            if len(word) < len(best_word):
+            if len(word) < len(best_word) and len(best_word) != 10:
                 best_word = word
             # Rule 2: Unless one word has exactly 10 letters, prefer the 10-letter word
             elif len(word) == 10 and len(best_word) != 10:
                 best_word = word
             # Rule 3: If same length and score, keep the first one (already handled by order of loop)
 
-    # Step 5: Return the best word and its score as a tuple
+    #Return the best word and its score as a tuple
     return (best_word, highest_score)
